@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Haydrian</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 800px;
+            width: 90%;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            color: #ffd700;
+        }
+
+        .page-description {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .about-content {
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+
+        .about-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            animation: slideInUp 1.2s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .about-section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .about-section:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .about-section:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #f0f0f0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .skill-category h4 {
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .interests-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .interest-tag {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .quote-section {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-style: italic;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .navigation {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link.home {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.5);
+            color: #ffd700;
+        }
+
+        .nav-link.home:hover {
+            background: rgba(255, 215, 0, 0.4);
+        }
+
+        .decorative-element {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .decorative-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .decorative-element:nth-child(2) {
+            top: 70%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-description {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .about-section {
+                padding: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .interests-list {
+                justify-content: flex-start;
+            }
+
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .decorative-element {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-element"></div>
+    <div class="decorative-element"></div>
+
+    <div class="container">
+        <h1>About Haydrian</h1>
+        <p class="page-description">Get to know more about me, my journey, and what drives my passion for coding!</p>
+
+        <div class="about-content">
+            <div class="about-section">
+                <h2 class="section-title">Who I Am</h2>
+                <div class="section-content">
+                    <p>Hi there! I'm Haydrian, a 13-year-old passionate developer who loves creating amazing digital experiences. At KLO school, I've discovered my love for coding and technology, and I'm constantly learning new skills to bring my ideas to life.</p>
+                    <div class="quote-section">
+                        "skibidi" - My personal motto that keeps me motivated!
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2 class="section-title">My Skills</h2>
+                <div class="section-content">
+                    <p>I'm always expanding my technical toolkit. Here are some of the technologies I work with:</p>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Frontend</h4>
+                            <ul class="skill-list">
+                                <li>HTML5 & CSS3</li>
+                                <li>JavaScript</li>
+                                <li>Responsive Design</li>
+                                <li>UI/UX Design</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Backend</h4>
+                            <ul class="skill-list">
+                                <li>Node.js</li>
+                                <li>Database Design</li>
+                                <li>API Development</li>
+                                <li>Server Management</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Tools & Others</h4>
+                            <ul class="skill-list">
+                                <li>Git & GitHub</li>
+                                <li>VS Code</li>
+                                <li>Problem Solving</li>
+                                <li>Creative Thinking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2 class="section-title">My Journey</h2>
+                <div class="section-content">
+                    <p>My coding journey started when I was curious about how websites and apps work. What began as simple curiosity has evolved into a genuine passion for creating digital solutions. I love the process of turning ideas into reality through code, and I'm always excited to learn new technologies and tackle challenging projects.</p>
+                    <p style="margin-top: 1rem;">Being young in the tech world gives me a fresh perspective and boundless enthusiasm. I approach every project with creativity and determination, always striving to create something unique and meaningful.</p>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2 class="section-title">Interests & Hobbies</h2>
+                <div class="section-content">
+                    <p>When I'm not coding, you can find me exploring these interests:</p>
+                    <div class="interests-list">
+                        <span class="interest-tag">🎮 Gaming</span>
+                        <span class="interest-tag">🎨 Digital Art</span>
+                        <span class="interest-tag">📚 Learning</span>
+                        <span class="interest-tag">🎵 Music</span>
+                        <span class="interest-tag">💻 Tech News</span>
+                        <span class="interest-tag">🚀 Innovation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-link home">🏠 Home</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+        </div>
+    </div>
+</body>
+</html>

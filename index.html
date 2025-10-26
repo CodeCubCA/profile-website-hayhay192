@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haydrian - Coding Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 600px;
+            width: 90%;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .welcome-message {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .decorative-element {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .decorative-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .decorative-element:nth-child(2) {
+            top: 70%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .welcome-message {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .decorative-element {
+                display: none;
+            }
+        }
+
+        .about-me-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            animation: slideInUp 1.2s ease-out;
+            animation-delay: 0.3s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-me-section h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .about-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            font-size: 1.2rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .bio-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border-left: 4px solid #ffd700;
+        }
+
+        .bio-section h3 {
+            font-size: 1.3rem;
+            color: #ffd700;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #f0f0f0;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .about-me-section {
+                padding: 2rem 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .about-me-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .info-card {
+                padding: 1rem;
+            }
+
+            .bio-section {
+                padding: 1.2rem;
+            }
+        }
+
+        /* Mines Game Styles */
+        .mines-game-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            animation: slideInUp 1.4s ease-out;
+            animation-delay: 0.6s;
+            animation-fill-mode: both;
+        }
+
+        .mines-game-section h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .game-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .balance-display, .potential-winnings {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            flex: 1;
+        }
+
+        .balance-label, .winnings-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            margin-bottom: 0.3rem;
+        }
+
+        #balance, #potential-winnings {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .game-controls {
+            margin-bottom: 1.5rem;
+        }
+
+        .bet-section {
+            margin-bottom: 1rem;
+        }
+
+        .bet-section label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e0e0e0;
+            font-weight: 500;
+        }
+
+        #bet-amount {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        #bet-amount:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .game-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .game-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .game-btn.primary {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .game-btn.primary:hover {
+            background: linear-gradient(135deg, #218838, #1ba085);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+        }
+
+        .game-btn.secondary {
+            background: linear-gradient(135deg, #ffc107, #ff9500);
+            color: #333;
+        }
+
+        .game-btn.secondary:hover {
+            background: linear-gradient(135deg, #e0a800, #e6851f);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+        }
+
+        .game-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .mines-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 1.5rem;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mine-square {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .mine-square:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: #ffd700;
+            transform: scale(1.05);
+        }
+
+        .mine-square.revealed {
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .mine-square.safe {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-color: #28a745;
+            color: white;
+        }
+
+        .mine-square.bomb {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            border-color: #dc3545;
+            color: white;
+            animation: explosion 0.5s ease-out;
+        }
+
+        @keyframes explosion {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .mine-square.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .game-message {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-height: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .game-message.success {
+            color: #28a745;
+        }
+
+        .game-message.error {
+            color: #dc3545;
+        }
+
+        .game-message.info {
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .mines-game-section {
+                padding: 2rem 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .mines-game-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .game-stats {
+                flex-direction: column;
+            }
+
+            .game-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .mines-grid {
+                max-width: 250px;
+                gap: 6px;
+            }
+
+            .mine-square {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-element"></div>
+    <div class="decorative-element"></div>
+
+    <div class="container">
+        <h1>haydrian</h1>
+        <p class="welcome-message">Welcome to my <span class="highlight">coding portfolio</span>!</p>
+
+        <div class="social-links">
+            <a href="projects.html" class="social-link">Projects</a>
+            <a href="about.html" class="social-link">About</a>
+        </div>
+
+        <!-- New About Me Section -->
+        <div class="about-me-section">
+            <h2>About Me</h2>
+            <div class="about-info">
+                <div class="info-card">
+                    <div class="info-label">Age</div>
+                    <div class="info-value">13</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">School</div>
+                    <div class="info-value">klo</div>
+                </div>
+            </div>
+            <div class="bio-section">
+                <h3>A bit about me</h3>
+                <p class="bio-text">skibidi</p>
+            </div>
+        </div>
+
+        <!-- Mines Game Section -->
+        <div class="mines-game-section">
+            <h2>Mines Game</h2>
+            <div class="game-container">
+                <div class="game-stats">
+                    <div class="balance-display">
+                        <span class="balance-label">Balance:</span>
+                        <span id="balance">$100</span>
+                    </div>
+                    <div class="potential-winnings">
+                        <span class="winnings-label">Potential Winnings:</span>
+                        <span id="potential-winnings">$0</span>
+                    </div>
+                </div>
+
+                <div class="game-controls">
+                    <div class="bet-section">
+                        <label for="bet-amount">Bet Amount ($10 - $100):</label>
+                        <input type="number" id="bet-amount" min="10" max="100" value="10">
+                    </div>
+                    <div class="game-buttons">
+                        <button id="start-game" class="game-btn primary">Start Game</button>
+                        <button id="cash-out" class="game-btn secondary" style="display: none;">Cash Out</button>
+                    </div>
+                </div>
+
+                <div class="mines-grid" id="mines-grid">
+                    <!-- Grid will be generated by JavaScript -->
+                </div>
+
+                <div class="game-message" id="game-message"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        class MinesGame {
+            constructor() {
+                this.balance = 100;
+                this.currentBet = 0;
+                this.potentialWinnings = 0;
+                this.gameActive = false;
+                this.revealedSquares = 0;
+                this.mines = [];
+                this.gridSize = 25; // 5x5 grid
+                this.mineCount = 5; // Number of mines
+                this.multiplier = 0.2; // Multiplier per safe square
+
+                this.initializeGame();
+            }
+
+            initializeGame() {
+                this.updateDisplay();
+                this.createGrid();
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                document.getElementById('start-game').addEventListener('click', () => this.startGame());
+                document.getElementById('cash-out').addEventListener('click', () => this.cashOut());
+                document.getElementById('bet-amount').addEventListener('input', () => this.updateBetLimits());
+            }
+
+            updateBetLimits() {
+                const betInput = document.getElementById('bet-amount');
+                const maxBet = this.balance;
+                betInput.max = maxBet;
+
+                if (parseInt(betInput.value) > maxBet) {
+                    betInput.value = maxBet;
+                }
+                if (parseInt(betInput.value) < 10) {
+                    betInput.value = 10;
+                }
+            }
+
+            createGrid() {
+                const grid = document.getElementById('mines-grid');
+                grid.innerHTML = '';
+
+                for (let i = 0; i < this.gridSize; i++) {
+                    const square = document.createElement('div');
+                    square.className = 'mine-square';
+                    square.dataset.index = i;
+                    square.addEventListener('click', () => this.revealSquare(i));
+                    grid.appendChild(square);
+                }
+            }
+
+            startGame() {
+                const betAmount = parseInt(document.getElementById('bet-amount').value);
+
+                // Validate bet amount
+                if (betAmount < 10) {
+                    this.showMessage('Minimum bet is $10', 'error');
+                    return;
+                }
+
+                if (betAmount > this.balance) {
+                    this.showMessage('Insufficient funds!', 'error');
+                    return;
+                }
+
+                // Start the game
+                this.currentBet = betAmount;
+                this.balance -= betAmount;
+                this.gameActive = true;
+                this.revealedSquares = 0;
+                this.potentialWinnings = 0;
+
+                // Generate mines
+                this.generateMines();
+
+                // Reset grid
+                this.resetGrid();
+
+                // Update UI
+                this.updateDisplay();
+                this.showGameButtons();
+                this.showMessage('Click squares to reveal them. Avoid the bombs!', 'info');
+            }
+
+            generateMines() {
+                this.mines = [];
+                const positions = [];
+
+                // Generate unique random positions for mines
+                while (positions.length < this.mineCount) {
+                    const pos = Math.floor(Math.random() * this.gridSize);
+                    if (!positions.includes(pos)) {
+                        positions.push(pos);
+                    }
+                }
+
+                this.mines = positions;
+            }
+
+            resetGrid() {
+                const squares = document.querySelectorAll('.mine-square');
+                squares.forEach(square => {
+                    square.className = 'mine-square';
+                    square.textContent = '';
+                });
+            }
+
+            revealSquare(index) {
+                if (!this.gameActive) return;
+
+                const square = document.querySelector(`[data-index="${index}"]`);
+
+                // Check if already revealed
+                if (square.classList.contains('revealed')) return;
+
+                // Mark as revealed
+                square.classList.add('revealed');
+
+                // Check if it's a mine
+                if (this.mines.includes(index)) {
+                    // Hit a bomb!
+                    square.classList.add('bomb');
+                    square.textContent = '💣';
+                    this.gameOver(false);
+                } else {
+                    // Safe square!
+                    square.classList.add('safe');
+                    square.textContent = '💰';
+                    this.revealedSquares++;
+                    this.updatePotentialWinnings();
+
+                    // Check if all safe squares are revealed
+                    if (this.revealedSquares === this.gridSize - this.mineCount) {
+                        this.gameOver(true);
+                    } else {
+                        this.showMessage(`Safe! Potential winnings: $${this.potentialWinnings}`, 'success');
+                    }
+                }
+            }
+
+            updatePotentialWinnings() {
+                this.potentialWinnings = Math.floor(this.currentBet * (1 + (this.revealedSquares * this.multiplier)));
+                document.getElementById('potential-winnings').textContent = `$${this.potentialWinnings}`;
+            }
+
+            cashOut() {
+                if (!this.gameActive || this.revealedSquares === 0) return;
+
+                this.balance += this.potentialWinnings;
+                this.showMessage(`Cashed out! You won $${this.potentialWinnings}!`, 'success');
+                this.endGame();
+            }
+
+            gameOver(won) {
+                this.gameActive = false;
+
+                if (won) {
+                    // Player revealed all safe squares
+                    this.balance += this.potentialWinnings;
+                    this.showMessage(`Congratulations! You won $${this.potentialWinnings}!`, 'success');
+                } else {
+                    // Player hit a bomb
+                    this.showMessage(`Boom! You hit a bomb and lost $${this.currentBet}!`, 'error');
+                    // Reveal all mines
+                    this.revealAllMines();
+                }
+
+                this.endGame();
+            }
+
+            revealAllMines() {
+                this.mines.forEach(mineIndex => {
+                    const square = document.querySelector(`[data-index="${mineIndex}"]`);
+                    if (!square.classList.contains('revealed')) {
+                        square.classList.add('revealed', 'bomb');
+                        square.textContent = '💣';
+                    }
+                });
+
+                // Disable all squares
+                const squares = document.querySelectorAll('.mine-square');
+                squares.forEach(square => {
+                    square.classList.add('disabled');
+                });
+            }
+
+            endGame() {
+                this.gameActive = false;
+                this.currentBet = 0;
+                this.potentialWinnings = 0;
+                this.revealedSquares = 0;
+
+                this.updateDisplay();
+                this.hideGameButtons();
+
+                // Check if player is out of money
+                if (this.balance < 10) {
+                    this.showMessage('Game Over! You need at least $10 to play again. Refreshing with $100...', 'error');
+                    setTimeout(() => {
+                        this.balance = 100;
+                        this.updateDisplay();
+                        this.createGrid();
+                        this.showMessage('', '');
+                    }, 3000);
+                }
+            }
+
+            showGameButtons() {
+                document.getElementById('start-game').style.display = 'none';
+                document.getElementById('cash-out').style.display = 'inline-block';
+                document.getElementById('bet-amount').disabled = true;
+            }
+
+            hideGameButtons() {
+                document.getElementById('start-game').style.display = 'inline-block';
+                document.getElementById('cash-out').style.display = 'none';
+                document.getElementById('bet-amount').disabled = false;
+            }
+
+            updateDisplay() {
+                document.getElementById('balance').textContent = `$${this.balance}`;
+                document.getElementById('potential-winnings').textContent = `$${this.potentialWinnings}`;
+                this.updateBetLimits();
+            }
+
+            showMessage(message, type) {
+                const messageElement = document.getElementById('game-message');
+                messageElement.textContent = message;
+                messageElement.className = `game-message ${type}`;
+            }
+        }
+
+        // Initialize the game when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new MinesGame();
+        });
+    </script>
+
+</body>
+</html>

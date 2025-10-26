@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mines Game - Comprehensive Test Suite</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .test-section h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .test-case {
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .test-case h3 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+        .expected {
+            background: #d4edda;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .actual {
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .pass {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .bug-found {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .bug-found h4 {
+            color: #dc3545;
+            margin-bottom: 10px;
+        }
+        .test-steps {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .test-steps ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .code-snippet {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .summary {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .critical-bug {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .medium-bug {
+            background: #fff8e1;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .low-bug {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎯 Mines Game - Comprehensive Test Suite</h1>
+        <p><strong>Test Date:</strong> <span id="test-date"></span></p>
+        <p><strong>Game File:</strong> mines-game.html</p>
+
+        <!-- 1. INPUT VALIDATION TESTS -->
+        <div class="test-section">
+            <h2>1. Input Validation Glitches</h2>
+
+            <div class="test-case">
+                <h3>Test 1.1: Bet Amount Validation - Minimum Boundary</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Set bet amount to $9 (below minimum)</li>
+                        <li>Click "Start Game"</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Game should show error message "Minimum bet is $10" and not start</div>
+                <div class="bug-found">
+                    <h4>🚨 BUG FOUND: Bet Amount Auto-Correction Issue</h4>
+                    <p><strong>Issue:</strong> In lines 544-547, the game auto-corrects bet amounts below $10 to $10, but then validates again at line 550-553. If balance is less than $10, this creates a contradiction.</p>
+                    <div class="code-snippet">
+if (betAmount < 10) {
+    betAmount = 10;
+    document.getElementById('bet-amount').value = betAmount;
+}
+// Later validation still checks if betAmount < 10 (redundant)
+if (betAmount < 10) {
+    this.showMessage('Minimum bet is $10', 'error');
+    return;
+}</div>
+                    <p><strong>Impact:</strong> Medium - Could allow invalid game states when balance < $10</p>
+                </div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 1.2: Bet Amount Validation - Maximum Boundary</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Manually type bet amount higher than current balance (e.g., $150 when balance is $100)</li>
+                        <li>Click "Start Game"</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Game should prevent betting more than current balance</div>
+                <div class="critical-bug">
+                    <h4>🔥 CRITICAL BUG: Input Validation Bypass</h4>
+                    <p><strong>Issue:</strong> The HTML input has max="100" initially, but users can manually type values higher than their balance. The JavaScript validation in updateBetLimits() only triggers on 'input' events, not on direct typing.</p>
+                    <div class="code-snippet">
+// HTML allows manual override of max attribute
+&lt;input type="number" id="bet-amount" min="10" max="100" value="10"&gt;
+
+// JavaScript tries to correct but has timing issues
+if (parseInt(betInput.value) > this.balance) {
+    betInput.value = this.balance;
+}</div>
+                    <p><strong>Exploit:</strong> User can type a high value quickly and click Start Game before validation runs</p>
+                    <p><strong>Impact:</strong> Critical - Allows betting more than available balance</p>
+                </div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 1.3: Mine Count Validation</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Set mine count to 0</li>
+                        <li>Set mine count to 11</li>
+                        <li>Set mine count to negative value (-5)</li>
+                        <li>Try starting game with each invalid value</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Game should reject invalid mine counts with appropriate error messages</div>
+                <div class="pass"><strong>Result:</strong> ✅ PASS - Validation correctly handles mine count boundaries (1-10)</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 1.4: Non-numeric Input Handling</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Type non-numeric characters in bet amount field (e.g., "abc", "10.5")</li>
+                        <li>Type non-numeric characters in mine count field</li>
+                        <li>Try starting game</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Game should handle non-numeric inputs gracefully</div>
+                <div class="medium-bug">
+                    <h4>⚠️ MEDIUM BUG: Decimal Handling</h4>
+                    <p><strong>Issue:</strong> parseInt() truncates decimal values (e.g., "10.9" becomes 10), potentially allowing bets below minimum when user intends higher amount</p>
+                    <div class="code-snippet">
+let betAmount = parseInt(document.getElementById('bet-amount').value);
+// "10.9" becomes 10, which might be below intended bet</div>
+                    <p><strong>Impact:</strong> Medium - Could lead to unintended bet amounts</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. GAME LOGIC TESTS -->
+        <div class="test-section">
+            <h2>2. Game Logic Glitches</h2>
+
+            <div class="test-case">
+                <h3>Test 2.1: Multiplier Calculation Accuracy</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Test multiplier calculation for each mine count (1-10)</li>
+                        <li>Verify formula: 0.2 + (mineCount - 1) * (0.8 / 9)</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected Multipliers:</strong>
+                    <ul>
+                        <li>1 mine: 0.2x</li>
+                        <li>5 mines: 0.6x</li>
+                        <li>10 mines: 1.0x</li>
+                    </ul>
+                </div>
+                <div class="medium-bug">
+                    <h4>⚠️ MEDIUM BUG: Poor Risk/Reward Balance</h4>
+                    <p><strong>Issue:</strong> The multiplier formula creates poor risk/reward ratios. With 1 mine (safest), multiplier is only 0.2x, making it nearly impossible to profit.</p>
+                    <div class="code-snippet">
+// With 1 mine and 24 safe squares:
+// Need to reveal 24 squares at 0.2x each = 4.8x total
+// But revealing all squares should give much higher reward
+
+this.multiplier = 0.2 + (mineCount - 1) * (0.8 / 9);</div>
+                    <p><strong>Impact:</strong> Medium - Game math doesn't incentivize play properly</p>
+                </div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 2.2: Potential Winnings Calculation</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Start game with $50 bet, 5 mines</li>
+                        <li>Reveal 3 safe squares</li>
+                        <li>Check potential winnings calculation</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Potential winnings = bet * (1 + (revealed_squares * multiplier))</div>
+                <div class="bug-found">
+                    <h4>🚨 BUG FOUND: Potential Winnings Floor Rounding</h4>
+                    <p><strong>Issue:</strong> Math.floor() in line 644 always rounds down, potentially cheating players out of cents</p>
+                    <div class="code-snippet">
+this.potentialWinnings = Math.floor(this.currentBet * (1 + (this.revealedSquares * this.multiplier)));</div>
+                    <p><strong>Impact:</strong> Low - Minor financial discrepancy, but could accumulate</p>
+                </div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 2.3: Balance Update Consistency</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Start with $100 balance</li>
+                        <li>Bet $30, lose game</li>
+                        <li>Verify balance is $70</li>
+                        <li>Bet $20, cash out with winnings</li>
+                        <li>Verify balance updates correctly</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Balance should accurately reflect wins and losses</div>
+                <div class="pass"><strong>Result:</strong> ✅ PASS - Balance updates correctly in both win and loss scenarios</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 2.4: Mine Placement Randomization</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Start multiple games with same mine count</li>
+                        <li>Note mine positions by hitting them</li>
+                        <li>Verify mines are placed randomly</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Mine positions should be random and unique each game</div>
+                <div class="low-bug">
+                    <h4>🔍 LOW BUG: Potential Infinite Loop</h4>
+                    <p><strong>Issue:</strong> The mine generation uses a while loop that could theoretically hang if Math.random() has issues</p>
+                    <div class="code-snippet">
+while (positions.length < this.mineCount) {
+    const pos = Math.floor(Math.random() * this.gridSize);
+    if (!positions.includes(pos)) {
+        positions.push(pos);
+    }
+}</div>
+                    <p><strong>Recommendation:</strong> Add a safety counter to prevent infinite loops</p>
+                    <p><strong>Impact:</strong> Low - Very unlikely to occur in practice</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. UI/UX GLITCHES -->
+        <div class="test-section">
+            <h2>3. UI/UX Glitches</h2>
+
+            <div class="test-case">
+                <h3>Test 3.1: Button State Management</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Start a game</li>
+                        <li>Check that "Start Game" button is hidden</li>
+                        <li>Check that "Cash Out" button is visible</li>
+                        <li>Check that input fields are disabled</li>
+                        <li>End game and verify states revert</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Button states and input field states should toggle correctly</div>
+                <div class="pass"><strong>Result:</strong> ✅ PASS - Button states change appropriately during game</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 3.2: Modal Behavior</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Lose all money to trigger game over modal</li>
+                        <li>Click the 'X' button to close modal</li>
+                        <li>Click "Play Again" button</li>
+                        <li>Click "Back Out" button</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Modal should open/close correctly and buttons should function</div>
+                <div class="medium-bug">
+                    <h4>⚠️ MEDIUM BUG: Back Out Navigation</h4>
+                    <p><strong>Issue:</strong> The "Back Out" button redirects to 'projects.html' which may not exist</p>
+                    <div class="code-snippet">
+backOut() {
+    // Go back to projects page
+    window.location.href = 'projects.html';
+}</div>
+                    <p><strong>Impact:</strong> Medium - Could lead to 404 error if projects.html doesn't exist</p>
+                </div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 3.3: Square Reveal Mechanics</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Start a game</li>
+                        <li>Click on squares to reveal them</li>
+                        <li>Try clicking already revealed squares</li>
+                        <li>Try clicking squares after game ends</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Revealed squares shouldn't be clickable again, squares should be disabled after game ends</div>
+                <div class="pass"><strong>Result:</strong> ✅ PASS - Square reveal mechanics work correctly</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 3.4: Cash Out Functionality</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Start game and reveal some safe squares</li>
+                        <li>Click "Cash Out"</li>
+                        <li>Try cashing out with 0 revealed squares</li>
+                        <li>Try cashing out when game is not active</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Cash out should only work when game is active and squares have been revealed</div>
+                <div class="pass"><strong>Result:</strong> ✅ PASS - Cash out validation works correctly</div>
+            </div>
+        </div>
+
+        <!-- 4. EDGE CASES -->
+        <div class="test-section">
+            <h2>4. Edge Cases and Boundary Conditions</h2>
+
+            <div class="test-case">
+                <h3>Test 4.1: Zero Balance Scenario</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Lose money until balance reaches $0</li>
+                        <li>Try to start a new game</li>
+                        <li>Check if game over modal appears correctly</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Game should prevent new games when balance < $10 and show game over modal</div>
+                <div class="pass"><strong>Result:</strong> ✅ PASS - Game correctly handles zero balance scenario</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 4.2: Exactly $10 Balance</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Adjust balance to exactly $10</li>
+                        <li>Try betting $10</li>
+                        <li>Try betting $11</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Should allow $10 bet but prevent $11 bet</div>
+                <div class="pass"><strong>Result:</strong> ✅ PASS - Correctly handles exact minimum balance</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 4.3: Maximum Values Testing</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Set balance to very high value (modify JavaScript)</li>
+                        <li>Test with maximum mine count (10)</li>
+                        <li>Test revealing all safe squares (15 squares with 10 mines)</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Game should handle large numbers without overflow</div>
+                <div class="pass"><strong>Result:</strong> ✅ PASS - Game handles maximum values correctly</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 4.4: Rapid Clicking/Double Clicking</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Start a game</li>
+                        <li>Rapidly click the same square multiple times</li>
+                        <li>Rapidly click "Cash Out" button multiple times</li>
+                        <li>Double-click "Start Game" button</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Game should prevent double actions and race conditions</div>
+                <div class="medium-bug">
+                    <h4>⚠️ MEDIUM BUG: Race Condition in Cash Out</h4>
+                    <p><strong>Issue:</strong> Rapid clicking "Cash Out" could potentially add winnings multiple times before game state updates</p>
+                    <div class="code-snippet">
+cashOut() {
+    if (!this.gameActive || this.revealedSquares === 0) return;
+
+    this.balance += this.potentialWinnings; // Could be called multiple times
+    this.showMessage(`Cashed out! You won $${this.potentialWinnings}!`, 'success');
+    this.endGame(); // This sets gameActive to false
+}</div>
+                    <p><strong>Recommendation:</strong> Set gameActive to false immediately in cashOut()</p>
+                    <p><strong>Impact:</strong> Medium - Could allow double cash-outs in edge cases</p>
+                </div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 4.5: Browser Edge Cases</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Refresh page during active game</li>
+                        <li>Test with JavaScript disabled</li>
+                        <li>Test with extremely small browser window</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Game should handle browser edge cases gracefully</div>
+                <div class="low-bug">
+                    <h4>🔍 LOW BUG: No Game State Persistence</h4>
+                    <p><strong>Issue:</strong> Game state is lost on page refresh, losing any active game progress</p>
+                    <p><strong>Impact:</strong> Low - Expected behavior for most web games, but could frustrate users</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. SPECIFIC SECURITY ISSUES -->
+        <div class="test-section">
+            <h2>5. Security and Exploit Testing</h2>
+
+            <div class="test-case">
+                <h3>Test 5.1: Client-Side Balance Manipulation</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Open browser developer tools</li>
+                        <li>Modify game.balance in console: <code>game.balance = 999999</code></li>
+                        <li>Check if modified balance is reflected in UI</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> In a real gambling game, this would be a critical security flaw</div>
+                <div class="critical-bug">
+                    <h4>🔥 CRITICAL SECURITY ISSUE: Client-Side Balance</h4>
+                    <p><strong>Issue:</strong> All game logic and balance tracking happens client-side, making it trivially exploitable</p>
+                    <div class="code-snippet">
+// Any user can modify their balance:
+game.balance = 999999;
+game.updateDisplay();</div>
+                    <p><strong>Impact:</strong> Critical - Complete game integrity compromise</p>
+                    <p><strong>Note:</strong> This is acceptable for a demo/portfolio piece but would be catastrophic in a real gambling application</p>
+                </div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 5.2: Mine Position Prediction</h3>
+                <div class="test-steps">
+                    <strong>Steps to Reproduce:</strong>
+                    <ol>
+                        <li>Start a game</li>
+                        <li>Check game.mines array in console</li>
+                        <li>Use this information to avoid mines</li>
+                    </ol>
+                </div>
+                <div class="expected"><strong>Expected:</strong> Mine positions should not be accessible to client</div>
+                <div class="critical-bug">
+                    <h4>🔥 CRITICAL SECURITY ISSUE: Mine Positions Exposed</h4>
+                    <p><strong>Issue:</strong> Mine positions are stored client-side and accessible via browser console</p>
+                    <div class="code-snippet">
+// User can see mine positions:
+console.log(game.mines); // Shows all mine positions</div>
+                    <p><strong>Impact:</strong> Critical - Allows players to cheat by knowing mine locations</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary">
+            <h2>🎯 Test Summary</h2>
+
+            <h3>Critical Issues Found (2):</h3>
+            <ul>
+                <li><strong>Input Validation Bypass:</strong> Users can bet more than their balance by typing quickly</li>
+                <li><strong>Client-Side Security:</strong> Balance and mine positions can be manipulated via console</li>
+            </ul>
+
+            <h3>Medium Issues Found (4):</h3>
+            <ul>
+                <li><strong>Bet Amount Auto-Correction:</strong> Redundant validation logic could cause edge case issues</li>
+                <li><strong>Decimal Input Handling:</strong> ParseInt() truncation could lead to unintended bet amounts</li>
+                <li><strong>Poor Risk/Reward Balance:</strong> Multiplier formula makes low-mine games unprofitable</li>
+                <li><strong>Navigation Bug:</strong> "Back Out" button could lead to 404 error</li>
+                <li><strong>Race Condition:</strong> Rapid cash-out clicks could potentially duplicate winnings</li>
+            </ul>
+
+            <h3>Low Issues Found (2):</h3>
+            <ul>
+                <li><strong>Potential Infinite Loop:</strong> Mine generation could theoretically hang</li>
+                <li><strong>No State Persistence:</strong> Game progress lost on page refresh</li>
+                <li><strong>Rounding Issues:</strong> Math.floor() always rounds down potential winnings</li>
+            </ul>
+
+            <h3>Recommendations:</h3>
+            <ol>
+                <li><strong>Fix Input Validation:</strong> Implement real-time validation that prevents typing invalid values</li>
+                <li><strong>Add Rate Limiting:</strong> Prevent rapid-fire button clicks</li>
+                <li><strong>Improve Math:</strong> Use Math.round() instead of Math.floor() for fairer calculations</li>
+                <li><strong>Add Safety Checks:</strong> Implement loop counters and validation redundancy</li>
+                <li><strong>For Production:</strong> Move all game logic and balance tracking to server-side</li>
+            </ol>
+
+            <h3>Overall Assessment:</h3>
+            <p>The game functions well as a demonstration piece but has several exploitable vulnerabilities that would need to be addressed for any real-world use. The core game mechanics work correctly, but input validation and security need significant improvement.</p>
+        </div>
+    </div>
+
+    <script>
+        // Set current date
+        document.getElementById('test-date').textContent = new Date().toLocaleDateString();
+
+        // Add interactive testing capabilities
+        function runInteractiveTests() {
+            console.log("🎯 Interactive Mines Game Testing Utilities");
+            console.log("==========================================");
+            console.log("To test the actual game, open mines-game.html and use these commands in console:");
+            console.log("");
+            console.log("// Check current game state:");
+            console.log("game.balance");
+            console.log("game.gameActive");
+            console.log("game.mines");
+            console.log("");
+            console.log("// Manipulate balance (demonstrates security flaw):");
+            console.log("game.balance = 999999; game.updateDisplay();");
+            console.log("");
+            console.log("// Force game over:");
+            console.log("game.balance = 0; game.showGameOverModal();");
+            console.log("");
+            console.log("// Check mine positions (demonstrates cheat potential):");
+            console.log("game.mines");
+        }
+
+        // Run the interactive test helper
+        runInteractiveTests();
+    </script>
+</body>
+</html>

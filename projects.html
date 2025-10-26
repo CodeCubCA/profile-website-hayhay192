@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Haydrian</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 800px;
+            width: 90%;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            color: #ffd700;
+        }
+
+        .page-description {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #ffd700;
+            text-align: center;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .tech-tag {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .navigation {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link.home {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.5);
+            color: #ffd700;
+        }
+
+        .nav-link.home:hover {
+            background: rgba(255, 215, 0, 0.4);
+        }
+
+        .decorative-element {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .decorative-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .decorative-element:nth-child(2) {
+            top: 70%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-description {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .decorative-element {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-element"></div>
+    <div class="decorative-element"></div>
+
+    <div class="container">
+        <h1>My Projects</h1>
+        <p class="page-description">Here are some of my awesome coding projects and creations!</p>
+
+        <div class="projects-grid">
+            <div class="project-card" onclick="window.location.href='shooting-game.html'" style="cursor: pointer;">
+                <div class="project-icon">🎯</div>
+                <h3 class="project-title">3D Wave Shooter</h3>
+                <p class="project-description">An immersive 3D survival shooter game with wave-based gameplay, realistic 3D graphics, and increasing difficulty. Survive as long as possible!</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Three.js</span>
+                    <span class="tech-tag">WebGL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">3D Graphics</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="window.location.href='clash-royale-game.html'" style="cursor: pointer;">
+                <div class="project-icon">🏰</div>
+                <h3 class="project-title">Clash Royale Strategy Game</h3>
+                <p class="project-description">A comprehensive tower defense strategy game with deck building, AI opponents, and real-time combat. Features 12 unique cards, elixir management, and authentic Clash Royale mechanics.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5 Canvas</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Game AI</span>
+                    <span class="tech-tag">Strategy</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="window.location.href='mines-game.html'" style="cursor: pointer;">
+                <div class="project-icon">💰</div>
+                <h3 class="project-title">Mines Gambling Game</h3>
+                <p class="project-description">A thrilling gambling game with a 5x5 grid. Choose 1-10 mines, bet money, avoid bombs, and cash out your winnings! Features dynamic multipliers based on mine count.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">Game Logic</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🌐</div>
+                <h3 class="project-title">Portfolio Website</h3>
+                <p class="project-description">This very website you're browsing! A modern, responsive portfolio showcasing my work with beautiful glassmorphism design.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">Responsive</span>
+                    <span class="tech-tag">Glassmorphism</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-link home">🏠 Home</a>
+            <a href="about.html" class="nav-link">About</a>
+        </div>
+    </div>
+</body>
+</html>
