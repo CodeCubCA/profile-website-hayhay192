@@ -193,6 +193,350 @@
             }
         }
 
+        /* Study Buddy AI Assistant Styles */
+        .study-buddy-section {
+            margin-top: 3rem;
+        }
+
+        .study-buddy-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .study-buddy-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.4);
+        }
+
+        .study-buddy-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .study-buddy-screenshot {
+            position: relative;
+        }
+
+        .screenshot-frame {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 15px;
+            padding: 0.5rem;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+        }
+
+        .screenshot-frame img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .study-buddy-details {
+            text-align: left;
+        }
+
+        .study-buddy-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #a78bfa;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .study-buddy-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+            color: #f0f0f0;
+        }
+
+        .study-buddy-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-badge-study {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge-study:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tech-badge-study.python-blue {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .tech-badge-study.streamlit-red {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .tech-badge-study.groq-purple {
+            background: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+            border-color: rgba(168, 85, 247, 0.4);
+        }
+
+        .tech-badge-study.git-green {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
+        .tech-badge-study.cloud-pink {
+            background: rgba(236, 72, 153, 0.2);
+            color: #ec4899;
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .study-buddy-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-study-repo, .btn-study-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid;
+        }
+
+        .btn-study-repo {
+            background: linear-gradient(135deg, #374151, #1f2937);
+            color: white;
+            border-color: rgba(75, 85, 99, 0.5);
+        }
+
+        .btn-study-repo:hover {
+            background: linear-gradient(135deg, #4b5563, #374151);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-study-repo svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-study-live {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            color: white;
+            border-color: transparent;
+        }
+
+        .btn-study-live:hover {
+            background: linear-gradient(135deg, #9333ea, #db2777);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(168, 85, 247, 0.5);
+        }
+
+        /* AI Assistant Project Styles */
+        .ai-project-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+        }
+
+        .section-header {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .ai-project-card {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(168, 85, 247, 0.15));
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ai-project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.4);
+        }
+
+        .project-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .project-screenshot {
+            position: relative;
+        }
+
+        .screenshot-wrapper {
+            background: linear-gradient(135deg, #06b6d4, #a855f7);
+            border-radius: 15px;
+            padding: 0.5rem;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+        }
+
+        .screenshot-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .project-details {
+            text-align: left;
+        }
+
+        .ai-project-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #06b6d4, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ai-project-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+            color: #f0f0f0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tech-badge.python {
+            background: rgba(48, 105, 152, 0.2);
+            color: #4da3ff;
+            border-color: rgba(48, 105, 152, 0.4);
+        }
+
+        .tech-badge.js {
+            background: rgba(240, 219, 79, 0.2);
+            color: #f0db4f;
+            border-color: rgba(240, 219, 79, 0.4);
+        }
+
+        .tech-badge.api {
+            background: rgba(236, 72, 153, 0.2);
+            color: #ec4899;
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .tech-badge.framework {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ff6b6b;
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .tech-badge.tool {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        .tech-badge.cloud {
+            background: rgba(34, 211, 238, 0.2);
+            color: #22d3ee;
+            border-color: rgba(34, 211, 238, 0.4);
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-repo, .btn-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid;
+        }
+
+        .btn-repo {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-repo:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-repo svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-live {
+            background: linear-gradient(135deg, #06b6d4, #a855f7);
+            color: white;
+            border-color: transparent;
+        }
+
+        .btn-live:hover {
+            background: linear-gradient(135deg, #0891b2, #9333ea);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(168, 85, 247, 0.5);
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -222,6 +566,79 @@
 
             .decorative-element {
                 display: none;
+            }
+
+            /* Study Buddy Mobile Styles */
+            .study-buddy-section {
+                margin-top: 2rem;
+            }
+
+            .study-buddy-card {
+                padding: 1.5rem;
+            }
+
+            .study-buddy-layout {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .study-buddy-title {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+
+            .study-buddy-description {
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            .study-buddy-tech {
+                justify-content: center;
+            }
+
+            .study-buddy-buttons {
+                flex-direction: column;
+            }
+
+            .btn-study-repo, .btn-study-live {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* AI Project Mobile Styles */
+            .ai-project-section {
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+            }
+
+            .section-header {
+                font-size: 1.8rem;
+            }
+
+            .ai-project-card {
+                padding: 1.5rem;
+            }
+
+            .project-layout {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .ai-project-title {
+                font-size: 1.6rem;
+            }
+
+            .ai-project-description {
+                font-size: 1rem;
+            }
+
+            .project-buttons {
+                flex-direction: column;
+            }
+
+            .btn-repo, .btn-live {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -280,6 +697,82 @@
                     <span class="tech-tag">CSS3</span>
                     <span class="tech-tag">Responsive</span>
                     <span class="tech-tag">Glassmorphism</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Buddy AI Assistant Project -->
+        <div class="study-buddy-section">
+            <div class="study-buddy-card">
+                <div class="study-buddy-layout">
+                    <div class="study-buddy-screenshot">
+                        <div class="screenshot-frame">
+                            <img src="img/chatbox.png" alt="Study Buddy AI Assistant Screenshot" />
+                        </div>
+                    </div>
+                    <div class="study-buddy-details">
+                        <h3 class="study-buddy-title">🤖 Study Buddy AI Assistant</h3>
+                        <p class="study-buddy-description">An intelligent AI-powered chatbot built with Streamlit and Groq API. Features real-time conversation, context awareness, and deployed to the cloud with CI/CD. Perfect for students seeking instant help with homework, explanations, and learning support across various subjects.</p>
+
+                        <div class="study-buddy-tech">
+                            <span class="tech-badge-study python-blue">Python</span>
+                            <span class="tech-badge-study streamlit-red">Streamlit</span>
+                            <span class="tech-badge-study groq-purple">Groq API</span>
+                            <span class="tech-badge-study git-green">Git</span>
+                            <span class="tech-badge-study cloud-pink">Streamlit Cloud</span>
+                        </div>
+
+                        <div class="study-buddy-buttons">
+                            <a href="https://github.com/CodeCubCA/ai-chatbox-hayhay192" target="_blank" class="btn-study-repo">
+                                <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                                </svg>
+                                Repository
+                            </a>
+                            <a href="https://ai-chatbox-haydrian-codecub.streamlit.app" target="_blank" class="btn-study-live">
+                                🤖 Try Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Assistant Project -->
+        <div class="ai-project-section">
+            <h2 class="section-header">Featured Project</h2>
+            <div class="ai-project-card">
+                <div class="project-layout">
+                    <div class="project-screenshot">
+                        <div class="screenshot-wrapper">
+                            <img src="img/profile.png" alt="AI Assistant Screenshot" />
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3 class="ai-project-title">🤖 AI Assistant</h3>
+                        <p class="ai-project-description">An intelligent conversational AI assistant powered by advanced language models. Features real-time responses, context-aware conversations, and seamless integration with modern APIs for natural language processing and understanding.</p>
+
+                        <div class="tech-stack">
+                            <span class="tech-badge python">Python</span>
+                            <span class="tech-badge js">JavaScript</span>
+                            <span class="tech-badge api">Groq API</span>
+                            <span class="tech-badge framework">Streamlit</span>
+                            <span class="tech-badge tool">Git</span>
+                            <span class="tech-badge cloud">Streamlit Cloud</span>
+                        </div>
+
+                        <div class="project-buttons">
+                            <a href="https://github.com/CodeCubCA/ai-chatbox-hayhay192" target="_blank" class="btn-repo">
+                                <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                                </svg>
+                                Repository
+                            </a>
+                            <a href="https://hayhay192" target="_blank" class="btn-live">
+                                🤖 Try Live
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
