@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing my coding projects and skills.
 
 ## Live Demo
 
-Visit the live website: [Haydrian's Portfolio](https://codecubca.github.io/profile-website-hayhay192/)
+Visit the live website: [Haydrian's Portfolio](https://haydrian.codecub.org/)
 
 ## Table of Contents
 
@@ -123,19 +123,20 @@ Hi! I'm Haydrian, a 13-year-old passionate developer at KLO school. This portfol
 ---
 
 ### 4. Study Buddy AI Assistant
-**Description:** An intelligent AI-powered chatbot built with Streamlit and Groq API for student learning support.
+**Description:** An intelligent AI-powered chatbot built with Streamlit and Google Gemini API for gaming assistance.
 
 **Features:**
-- Real-time AI conversation
+- Real-time AI conversation with streaming responses
+- Multiple personality modes (Friendly, Professional, Humorous)
 - Context-aware responses
 - Cloud deployment with CI/CD
-- Perfect for homework help and explanations
-- Multi-subject support
+- Perfect for game recommendations, strategies, and expert advice
+- Gaming-focused assistance
 
 **Technologies:**
 - Python
 - Streamlit
-- Groq API
+- Google Gemini 2.5 Flash API
 - Git
 - Streamlit Cloud
 
@@ -145,37 +146,29 @@ Hi! I'm Haydrian, a 13-year-old passionate developer at KLO school. This portfol
 
 ---
 
-### 5. AI Assistant (Featured Project)
-**Description:** An intelligent conversational AI assistant powered by advanced language models with real-time responses and context awareness.
+### 5. Portfolio Website (Featured Project)
+**Description:** This very website! A modern, responsive portfolio showcasing my projects and skills. Built with clean code, smooth animations, and beautiful glassmorphism design that works perfectly across all devices.
 
 **Features:**
-- Real-time conversation processing
-- Context-aware AI responses
-- Modern API integration
-- Natural language processing
-
-**Technologies:**
-- Python
-- JavaScript
-- Groq API
-- Streamlit
-- Git
-- Streamlit Cloud
-
-**Links:**
-- [Live Demo](https://hayhay192)
-- [GitHub Repository](https://github.com/CodeCubCA/ai-chatbox-hayhay192)
-
----
-
-### 6. Portfolio Website
-**Description:** This very website! A modern, responsive portfolio with beautiful glassmorphism design.
+- Modern glassmorphism UI design
+- Fully responsive across all devices
+- Smooth animations and transitions
+- Interactive embedded games
+- Project showcase with live demos
+- Custom domain deployment
 
 **Technologies:**
 - HTML5
 - CSS3
+- JavaScript
 - Responsive Design
-- Glassmorphism effects
+- Git
+- GitHub Pages
+
+**Links:**
+- [Live Demo](https://haydrian.codecub.org/)
+- [GitHub Repository](https://github.com/CodeCubCA/profile-website-hayhay192)
+
 
 ## Technologies Used
 
@@ -201,7 +194,7 @@ Hi! I'm Haydrian, a 13-year-old passionate developer at KLO school. This portfol
 ### AI & Backend (External Projects)
 - **Python** - Backend development
 - **Streamlit** - Web app framework
-- **Groq API** - AI language model integration
+- **Google Gemini 2.5 Flash API** - AI language model integration
 - **Git** - Version control
 - **Streamlit Cloud** - Deployment platform
 
@@ -245,19 +238,20 @@ profile-website-hayhay192/
 ├── index.html                              # Homepage with intro and mines game
 ├── projects.html                           # Projects showcase page
 ├── about.html                              # About me page
-├── shooting-game.html                      # 3D Wave Shooter game
-├── clash-royale-game.html                  # Clash Royale strategy game
-├── mines-game.html                         # Standalone mines game
-├── clash-royale-tests.html                 # Clash Royale test suite
-├── clash-royale-fixes-validation.html      # Validation tests
-├── mines-game-tests.html                   # Mines game tests
-├── clash-royale-improvements.js            # Game improvements
-├── clash_royale_test_suite.js             # Automated test suite
-├── automated-test-runner.js                # Test automation
-├── bug-fix-recommendations.md              # Bug fix documentation
-├── manual-testing-checklist.md             # Testing checklist
-├── clash-royale-implementation-report.md   # Implementation notes
-├── clash-royale-fixes-summary.md           # Fixes summary
+├── games/                                  # Games folder
+│   ├── shooting-game.html                  # 3D Wave Shooter game
+│   ├── clash-royale-game.html              # Clash Royale strategy game
+│   ├── mines-game.html                     # Standalone mines game
+│   ├── clash-royale-tests.html             # Clash Royale test suite
+│   ├── clash-royale-fixes-validation.html  # Validation tests
+│   ├── mines-game-tests.html               # Mines game tests
+│   ├── clash-royale-improvements.js        # Game improvements
+│   ├── clash_royale_test_suite.js         # Automated test suite
+│   ├── automated-test-runner.js            # Test automation
+│   ├── bug-fix-recommendations.md          # Bug fix documentation
+│   ├── manual-testing-checklist.md         # Testing checklist
+│   ├── clash-royale-implementation-report.md # Implementation notes
+│   └── clash-royale-fixes-summary.md       # Fixes summary
 ├── .gitignore                              # Git ignore rules
 ├── README.md                               # This file
 └── .claude/                                # Claude Code agents
@@ -290,10 +284,12 @@ profile-website-hayhay192/
 - Interests & Hobbies with tags
 - Responsive design with stacked sections
 
-### Game Files
+### Game Files (games/ folder)
 - **shooting-game.html:** Full 3D shooter with Three.js
 - **clash-royale-game.html:** Tower defense strategy game
 - **mines-game.html:** Gambling-style puzzle game
+- **Test files:** Comprehensive test suites for game validation
+- **Documentation:** Bug fixes, implementation reports, and checklists
 
 ## Browser Support
 
