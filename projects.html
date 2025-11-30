@@ -537,6 +537,248 @@
             box-shadow: 0 5px 20px rgba(168, 85, 247, 0.5);
         }
 
+        /* Voice AI Assistant Styles */
+        .voice-ai-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #a855f7, #ec4899) 1;
+            transition: all 0.4s ease;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .voice-ai-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .voice-ai-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .voice-ai-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.6);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1f2937;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.4);
+            z-index: 2;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(251, 191, 36, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(251, 191, 36, 0.6);
+            }
+        }
+
+        .badge-icon {
+            font-size: 1.2rem;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .voice-screenshot-wrapper {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-radius: 20px;
+            padding: 0.7rem;
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .voice-screenshot-wrapper:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 50px rgba(236, 72, 153, 0.6);
+        }
+
+        .voice-screenshot-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            display: block;
+        }
+
+        .voice-ai-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .voice-ai-description {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+            color: #f0f0f0;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-item:hover {
+            background: rgba(168, 85, 247, 0.2);
+            border-color: rgba(236, 72, 153, 0.5);
+            transform: translateX(5px);
+        }
+
+        .tech-badge.voice-python {
+            background: rgba(48, 105, 152, 0.3);
+            color: #60a5fa;
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+
+        .tech-badge.voice-streamlit {
+            background: rgba(239, 68, 68, 0.3);
+            color: #f87171;
+            border-color: rgba(248, 113, 113, 0.5);
+        }
+
+        .tech-badge.voice-ai {
+            background: rgba(168, 85, 247, 0.3);
+            color: #c084fc;
+            border-color: rgba(192, 132, 252, 0.5);
+        }
+
+        .tech-badge.voice-speech {
+            background: rgba(236, 72, 153, 0.3);
+            color: #f472b6;
+            border-color: rgba(244, 114, 182, 0.5);
+        }
+
+        .tech-badge.voice-cloud {
+            background: rgba(34, 211, 238, 0.3);
+            color: #22d3ee;
+            border-color: rgba(34, 211, 238, 0.5);
+        }
+
+        .btn-voice-repo, .btn-voice-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            border: 2px solid;
+        }
+
+        .btn-voice-repo {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-voice-repo:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-voice-repo svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-voice-live {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            color: white;
+            border-color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-voice-live::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-voice-live:hover::before {
+            left: 100%;
+        }
+
+        .btn-voice-live:hover {
+            background: linear-gradient(135deg, #9333ea, #db2777);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.6);
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -640,6 +882,44 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            /* Voice AI Mobile Styles */
+            .voice-ai-card {
+                padding: 2rem 1.5rem;
+                padding-top: 4rem;
+            }
+
+            .featured-badge {
+                top: 15px;
+                right: 15px;
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .voice-ai-title {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+
+            .voice-ai-description {
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-item {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .btn-voice-repo, .btn-voice-live {
+                width: 100%;
+                justify-content: center;
+                padding: 0.9rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -738,10 +1018,58 @@
             </div>
         </div>
 
-        <!-- AI Assistant Project -->
+        <!-- Voice AI Assistant - Featured Project -->
         <div class="ai-project-section">
-            <h2 class="section-header">Featured Project</h2>
-            <div class="ai-project-card">
+            <h2 class="section-header">Featured Projects</h2>
+
+            <!-- Voice AI Assistant Card -->
+            <div class="voice-ai-card">
+                <div class="featured-badge">
+                    <span class="badge-icon">⭐</span>
+                    <span class="badge-text">Featured Project</span>
+                </div>
+                <div class="project-layout">
+                    <div class="project-screenshot">
+                        <div class="voice-screenshot-wrapper">
+                            <img src="img/voice_ai_assistant.png" alt="Voice AI Assistant Screenshot" />
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3 class="voice-ai-title">Voice AI Assistant 🎤</h3>
+                        <p class="voice-ai-description">An intelligent voice-enabled chatbot powered by Google Gemini API. Features real-time speech-to-text input, natural text-to-speech output, and seamless AI conversations. Built as part of the AI with Python course at CodeCub.</p>
+
+                        <div class="features-list">
+                            <div class="feature-item">🎤 Voice input using Web Speech API</div>
+                            <div class="feature-item">🔊 Natural voice output with Google TTS</div>
+                            <div class="feature-item">🤖 Google Gemini 1.5 Flash AI</div>
+                            <div class="feature-item">🎭 Multiple personality modes</div>
+                        </div>
+
+                        <div class="tech-stack">
+                            <span class="tech-badge voice-python">Python</span>
+                            <span class="tech-badge voice-streamlit">Streamlit</span>
+                            <span class="tech-badge voice-ai">AI</span>
+                            <span class="tech-badge voice-speech">Voice</span>
+                            <span class="tech-badge voice-cloud">Render</span>
+                        </div>
+
+                        <div class="project-buttons">
+                            <a href="https://github.com/CodeCubCA/voice-ai-assistant-hayhay192" target="_blank" class="btn-voice-repo">
+                                <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                                </svg>
+                                View Code
+                            </a>
+                            <a href="https://voice-ai-assistant-hayhay192.onrender.com/" target="_blank" class="btn-voice-live">
+                                🎤 Try Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Assistant Project -->
+            <div class="ai-project-card" style="margin-top: 2rem;">
                 <div class="project-layout">
                     <div class="project-screenshot">
                         <div class="screenshot-wrapper">
